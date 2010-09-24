@@ -16,14 +16,20 @@ My Twitter account : http://twitter.com/leonardom
 Usage
 =====
 
+Install rails plugin
+
+rails plugin install git://github.com/insidecode/insidecode_rails_flexigrid
+
 In the view, open your layout and add the require JavaScript and CSS in the header:
 
 <%= flexigrid_stylesheets %>
+
 <%= flexigrid_javascripts %>
 
 In the controller, you use the method to_flexigrid_json to gererate the required JSON for you. Example:
 
 def index
+
   page = params[:page]
   rp = params[:rp]
   
@@ -39,6 +45,7 @@ def index
 																			[:iso, :name, :printable_name, :numcode], 
                                       page, total) }
   end
+
 end
 
 And then to create a datagrid in you view, use the helper method flexigrid. Example:
