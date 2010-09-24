@@ -1,35 +1,47 @@
 require 'rubygems'
 require 'rake'
 
+PKG_FILES = FileList[
+  '[a-zA-Z]*',
+  'generators/**/*',
+  'lib/**/*',
+  'rails/**/*',
+  'tasks/**/*',
+  'spec/**/*'
+]
+
 begin
-  require 'jeweler'
+  require "jeweler"
+  
   Jeweler::Tasks.new do |gem|
     gem.name = "insidecode_rails_flexigrid"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
-    gem.email = "leonardo.marcelino@gmail.com"
-    gem.homepage = "http://github.com/leonardom/insidecode_rails_flexigrid"
-    gem.authors = ["leo"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.version = "0.0.1"
+    gem.author = "Leonardo Marcelino"
+    gem.email = "leonardo@insidecode.com.br"
+    gem.homepage = "http://insidecode.com.br"
+    gem.platform = Gem::Platform::RUBY
+    gem.summary = "Rails plugin to allow you to add jQuery Flexigrid into your applications"
+    gem.files = PKG_FILES.to_a
+    gem.require_path = "lib"
+    gem.has_rdoc = false
+    gem.extra_rdoc_files = "[README]"
   end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
+rescue
+  puts "Jewler or one of its depencencies is not installed"
 end
 
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
+  test.libs << 'lib' << 'spec'
+  test.pattern = 'spec/**/*_spec.rb'
   test.verbose = true
 end
 
 begin
   require 'rcov/rcovtask'
   Rcov::RcovTask.new do |test|
-    test.libs << 'test'
-    test.pattern = 'test/**/test_*.rb'
+    test.libs << 'spec'
+    test.pattern = 'spec/**/*_spec.rb'
     test.verbose = true
   end
 rescue LoadError
