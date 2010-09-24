@@ -1498,5 +1498,21 @@
 		}
 
 	}; //end noSelect
+
+	$.fn.getSelectedRows = function() { //get selected rows
+		var selected = [];
+
+		this.each( function() {
+			if (this.grid) {
+				$('.trSelected', this).each(function() {
+					var id = this.id;
+					id = id.substring(id.lastIndexOf('row')+3);
+					selected.push(id);
+				});
+			}
+		});
+		
+		return selected;
+	}; //end of selected rows
 		
 })(jQuery);
